@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transitly Bus Reservation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Transitly home">
+        <span class="brand-mark">T</span>
+        <span>Transitly</span>
+      </a>
+      <nav>
+        <a href="#search">Search</a>
+        <a href="#booking">Booking</a>
+        <a href="#admin">Admin</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Online bus reservation platform</p>
+          <h1>Reserve premium bus seats with live availability.</h1>
+          <p class="lede">Search routes, compare operators, choose exact seats, and confirm passenger bookings through one polished full-stack system.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#search">Find buses</a>
+            <a class="button ghost" href="#booking">Track booking</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Route snapshot">
+          <div class="route-card">
+            <div>
+              <span>Tonight</span>
+              <strong>Delhi to Jaipur</strong>
+            </div>
+            <p>36 seats · AC Sleeper · 4.8 rating</p>
+          </div>
+          <div class="path-line">
+            <span></span><i></i><span></span>
+          </div>
+          <div class="metric-grid">
+            <div><strong id="statTrips">0</strong><span>Trips</span></div>
+            <div><strong id="statBookings">0</strong><span>Bookings</span></div>
+            <div><strong id="statRevenue">₹0</strong><span>Revenue</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="search" class="search-band">
+        <form id="searchForm" class="search-form">
+          <label>
+            From
+            <select id="origin" required></select>
+          </label>
+          <label>
+            To
+            <select id="destination" required></select>
+          </label>
+          <label>
+            Date
+            <input id="travelDate" type="date" required />
+          </label>
+          <button type="submit">Search buses</button>
+        </form>
+      </section>
+
+      <section class="content-grid">
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">Available buses</p>
+            <h2>Choose your trip</h2>
+          </div>
+          <div id="tripList" class="trip-list"></div>
+        </div>
+
+        <aside class="booking-panel">
+          <div class="section-heading compact">
+            <p class="eyebrow">Seat map</p>
+            <h2 id="selectedTripTitle">Select a bus</h2>
+          </div>
+          <div id="seatMap" class="seat-map empty">Pick a trip to view seats.</div>
+          <form id="bookingForm" class="booking-form">
+            <input type="hidden" id="tripId" />
+            <label>
+              Passenger name
+              <input id="passengerName" type="text" placeholder="Aarav Sharma" required />
+            </label>
+            <label>
+              Email
+              <input id="passengerEmail" type="email" placeholder="aarav@example.com" required />
+            </label>
+            <label>
+              Phone
+              <input id="passengerPhone" type="tel" placeholder="+91 98765 43210" required />
+            </label>
+            <label>
+              Payment
+              <select id="paymentMethod">
+                <option>UPI</option>
+                <option>Credit Card</option>
+                <option>Debit Card</option>
+                <option>Net Banking</option>
+              </select>
+            </label>
+            <div class="fare-row">
+              <span id="seatSummary">No seats selected</span>
+              <strong id="totalFare">₹0</strong>
+            </div>
+            <button type="submit" disabled>Confirm booking</button> 
+          </form>
+        </aside>
+      </section>
+
+      <section id="booking" class="lookup-band">
+        <div class="section-heading">
+          <p class="eyebrow">Booking lookup</p>
+          <h2>Retrieve ticket details</h2>
+        </div>
+        <form id="lookupForm" class="lookup-form">
+          <input id="bookingRef" type="text" placeholder="BRS-XXXXXXXX" />
+          <button type="submit">Find ticket</button>
+        </form>
+        <div id="ticketResult" class="ticket-result"></div>
+      </section>
+
+      <section id="admin" class="admin-section">
+        <div class="section-heading">
+        </div>
+        <div class="admin-grid" id="adminGrid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2026 Transitly Bus Reservation. All rights reserved.</p>
+        <nav>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
