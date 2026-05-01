@@ -151,7 +151,7 @@ async function selectTrip(tripId) {
   els.seatMap.innerHTML = data.seats.map((seat, index) => {
     // Left window (0), Left aisle (1), Right aisle (2), Right window (3)
     const isWindow = index % 4 === 0 || index % 4 === 3;
-    const seatPrice = isWindow ? trip.fare + 100 : trip.fare; // Window seats cost ₹100 more
+    const seatPrice = trip.fare;
     
     // Store seat details in state for calculating later
     state.seatData[seat.number] = { price: seatPrice, isWindow };
@@ -167,7 +167,7 @@ async function selectTrip(tripId) {
       return seatHtml + `<div class="aisle"></div>`;
     }
     return seatHtml;
-  }).join "";
+  }).join("");
 
   renderTrips(state.trips);
   updateFare();
@@ -237,7 +237,7 @@ async function loadAdminStats() {
     ["Confirmed bookings", stats.bookings],
     ["Revenue", money.format(stats.revenue)],
     ["Fleet buses", stats.buses]
-  ].map(([label, value]) => `<div class="admin-card"><strong>${value}</strong><span>${label}</span></div>`).join "";
+  ].map(([label, value]) => `<div class="admin-card"><strong>${value}</strong><span>${label}</span></div>`).join("");
 
   els.recentBookings.innerHTML = recent.length
     ? recent.map((booking) => `
@@ -245,7 +245,7 @@ async function loadAdminStats() {
           <span><strong>${booking.booking_ref}</strong><br />${booking.passenger_name}</span>
           <strong>${money.format(booking.total_amount)}</strong>
         </div>
-      `).join ""
+      `).join("")
     : `<p class="trip-meta">No bookings yet.</p>`;
 }
 
