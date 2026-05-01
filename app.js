@@ -156,7 +156,7 @@ async function selectTrip(tripId) {
     state.seatData[seat.number] = { price: seatPrice, isWindow };
 
     const seatHtml = `
-      <button type="button" class="seat ${seat.booked ? "booked" : ""}" data-seat="${seat.number}" ${seat.booked ? "disabled" : ""} title="Seat ${seat.number} - ${money.format(seatPrice)} ${isWindow ? '(Window)' : ''}">
+      <button type="button" class="seat ${seat.booked ? "booked" : ""}" data-seat="${seat.number}" ${seat.booked ? "disabled" : ""} title=" Seat ${seat.number} - ${money.format(seatPrice)} ${isWindow ? '(Window)' : ''}">
         ${seat.number}
       </button>
     `;
@@ -166,7 +166,7 @@ async function selectTrip(tripId) {
       return seatHtml + `<div class="aisle"></div>`;
     }
     return seatHtml;
-  }).join "";
+  }).join("");
 
   renderTrips(state.trips);
   updateFare();
@@ -236,7 +236,7 @@ async function loadAdminStats() {
     ["Confirmed bookings", stats.bookings],
     ["Revenue", money.format(stats.revenue)],
     ["Fleet buses", stats.buses]
-  ].map(([label, value]) => `<div class="admin-card"><strong>${value}</strong><span>${label}</span></div>`).join "";
+  ].map(([label, value]) => `<div class="admin-card"><strong>${value}</strong><span>${label}</span></div>`).join("");
 
   els.recentBookings.innerHTML = recent.length
     ? recent.map((booking) => `
@@ -244,7 +244,7 @@ async function loadAdminStats() {
           <span><strong>${booking.booking_ref}</strong><br />${booking.passenger_name}</span>
           <strong>${money.format(booking.total_amount)}</strong>
         </div>
-      `).join ""
+      `).join("")
     : `<p class="trip-meta">No bookings yet.</p>`;
 }
 
